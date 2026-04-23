@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sites web — Adron Technologies</title>
+  <meta name="description" content="Sites web sur mesure pour les PME genevoises. Design, SEO, performance et hebergement suisse inclus.">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal: #007373; --teal-dark: #005959; --teal-light: #00B8B8;
+      --dark: #212B36; --dark-2: #454F5B; --dark-3: #637381;
+      --orange: #FA541C; --purple: #B195FE;
+      --white: #FFFFFF;
+      --gray-50: #F9FAFB; --gray-100: #F4F6F8; --gray-200: #DFE3E8;
+      --gray-300: #C4CDD5; --gray-400: #919EAB; --gray-500: #637381;
+      --border: rgba(145,158,171,0.2); --border-dashed: rgba(145,158,171,0.32);
+      --font-display: 'Barlow', system-ui, sans-serif;
+      --font-body: 'Public Sans', system-ui, sans-serif;
+      --radius: 12px; --radius-lg: 16px;
+      --shadow-card: -24px 24px 72px -8px rgba(145,158,171,0.24);
+      --transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); line-height: 1.6; background: var(--white); -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; height: 80px; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 var(--border); z-index: 1000; display: flex; align-items: center; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; width: 100%; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; color: var(--dark); }
+    .nav-logo span { color: var(--teal); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--dark-3); transition: var(--transition); }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-cta { background: var(--teal) !important; color: var(--white) !important; padding: 0.6rem 1.5rem; border-radius: 8px; font-size: 0.875rem !important; font-weight: 600 !important; }
+    .nav-cta:hover { background: var(--teal-dark) !important; }
+    .nav-mobile-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; }
+    .nav-mobile-toggle span { display: block; width: 22px; height: 2px; background: var(--dark); border-radius: 2px; }
+
+    .hero { position: relative; background: linear-gradient(135deg, var(--dark) 0%, #1a3547 100%); padding: 11rem 2rem 7rem; overflow: hidden; }
+    .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px; background: linear-gradient(to bottom, transparent, var(--white)); pointer-events: none; }
+    .hero-inner { max-width: 740px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+    .hero-badge { display: inline-block; padding: 0.4rem 1.1rem; background: rgba(0,115,115,0.15); border: 1px solid rgba(0,184,184,0.3); border-radius: 100px; color: var(--teal-light); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.5px; margin-bottom: 2rem; }
+    .hero h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 5vw, 3rem); color: var(--white); line-height: 1.15; margin-bottom: 1.5rem; }
+    .hero p { font-size: 1.1rem; color: rgba(255,255,255,0.6); line-height: 1.75; max-width: 560px; margin: 0 auto 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-hero-primary { display: inline-flex; align-items: center; background: var(--white); color: var(--dark); padding: 0.85rem 2rem; border-radius: 8px; font-size: 0.95rem; font-weight: 600; font-family: var(--font-body); border: none; cursor: pointer; transition: var(--transition); }
+    .btn-hero-primary:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.15); transform: translateY(-1px); }
+    .btn-ghost { display: inline-flex; align-items: center; background: rgba(255,255,255,0.08); color: var(--white); padding: 0.85rem 2rem; border-radius: 8px; font-size: 0.95rem; font-weight: 500; font-family: var(--font-body); border: 1px solid rgba(255,255,255,0.15); cursor: pointer; transition: var(--transition); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.15); }
+
+    .section { padding: 5rem 2rem; }
+    .section-gray { background: var(--gray-50); }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--teal); margin-bottom: 0.75rem; }
+    .section-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.8rem, 3.5vw, 2.5rem); line-height: 1.2; margin-bottom: 1rem; }
+    .section-subtitle { font-size: 1.05rem; color: var(--dark-3); line-height: 1.7; max-width: 560px; }
+    .section-header { margin-bottom: 3.5rem; }
+    .section-header-center { text-align: center; }
+    .section-header-center .section-subtitle { margin-left: auto; margin-right: auto; }
+
+    /* FEATURES GRID */
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .feature-card { border: 1px dashed var(--border-dashed); border-radius: var(--radius-lg); padding: 2rem 1.75rem; transition: var(--transition); }
+    .feature-card:hover { border-color: transparent; box-shadow: var(--shadow-card); }
+    .feature-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(0,115,115,0.08); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
+    .feature-icon svg { width: 22px; height: 22px; stroke: var(--teal); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .feature-card h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; margin-bottom: 0.5rem; }
+    .feature-card p { font-size: 0.875rem; color: var(--dark-3); line-height: 1.7; }
+
+    /* PRICING */
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; align-items: start; }
+    .pricing-card { border: 1px dashed var(--border-dashed); border-radius: var(--radius-lg); padding: 2.5rem 2rem; transition: var(--transition); position: relative; }
+    .pricing-card:hover { border-color: transparent; box-shadow: var(--shadow-card); }
+    .pricing-card.popular { border: 2px solid var(--teal); }
+    .pricing-popular-tag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--teal); color: var(--white); font-size: 0.7rem; font-weight: 600; padding: 0.3rem 1rem; border-radius: 100px; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+    .pricing-name { font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: var(--dark-3); margin-bottom: 0.5rem; }
+    .pricing-price { font-family: var(--font-display); font-weight: 700; font-size: 2.25rem; color: var(--dark); margin-bottom: 0.25rem; }
+    .pricing-price-suffix { font-size: 0.875rem; font-weight: 400; color: var(--dark-3); }
+    .pricing-desc { font-size: 0.85rem; color: var(--dark-3); margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); line-height: 1.6; }
+    .pricing-features { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem; }
+    .pricing-feature { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.875rem; color: var(--dark-2); }
+    .pricing-check { width: 18px; height: 18px; border-radius: 50%; background: rgba(0,115,115,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .pricing-check svg { width: 10px; height: 10px; stroke: var(--teal); fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .btn-teal { display: inline-flex; align-items: center; justify-content: center; width: 100%; background: var(--teal); color: var(--white); padding: 0.8rem 1.5rem; border-radius: 8px; font-size: 0.9rem; font-weight: 600; font-family: var(--font-body); border: none; cursor: pointer; transition: var(--transition); }
+    .btn-teal:hover { background: var(--teal-dark); box-shadow: 0 8px 24px rgba(0,115,115,0.25); }
+    .btn-outline { display: inline-flex; align-items: center; justify-content: center; width: 100%; background: transparent; color: var(--teal); padding: 0.8rem 1.5rem; border-radius: 8px; font-size: 0.9rem; font-weight: 600; font-family: var(--font-body); border: 1.5px solid var(--teal); cursor: pointer; transition: var(--transition); }
+    .btn-outline:hover { background: var(--teal); color: var(--white); }
+
+    /* TESTIMONIAL */
+    .testimonial-block { max-width: 720px; margin: 0 auto; text-align: center; }
+    .testimonial-text { font-size: 1.2rem; color: var(--dark); line-height: 1.7; margin-bottom: 1.5rem; font-family: var(--font-display); font-weight: 500; }
+    .testimonial-text::before { content: '\201C'; }
+    .testimonial-text::after { content: '\201D'; }
+    .testimonial-stars { display: flex; gap: 2px; justify-content: center; margin-bottom: 1.5rem; }
+    .star-svg { width: 18px; height: 18px; fill: var(--orange); }
+    .testimonial-author-name { font-weight: 600; font-size: 0.9rem; }
+    .testimonial-author-role { font-size: 0.8rem; color: var(--dark-3); }
+
+    /* FAQ */
+    .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-question { padding: 1.25rem 0; font-family: var(--font-display); font-weight: 600; font-size: 1rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .faq-question svg { width: 20px; height: 20px; stroke: var(--dark-3); fill: none; stroke-width: 2; stroke-linecap: round; flex-shrink: 0; transition: var(--transition); }
+    .faq-answer { padding: 0 0 1.25rem; font-size: 0.9rem; color: var(--dark-3); line-height: 1.7; display: none; }
+    .faq-item.open .faq-answer { display: block; }
+    .faq-item.open .faq-question svg { transform: rotate(45deg); }
+
+    .cta-section { background: linear-gradient(135deg, var(--teal), var(--teal-dark)); padding: 5rem 2rem; text-align: center; }
+    .cta-section h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.8rem, 3.5vw, 2.5rem); color: var(--white); margin-bottom: 1rem; }
+    .cta-section p { color: rgba(255,255,255,0.7); font-size: 1.05rem; margin-bottom: 2.5rem; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+    .btn-white { display: inline-flex; align-items: center; background: var(--white); color: var(--teal); padding: 0.85rem 2rem; border-radius: 8px; font-size: 0.95rem; font-weight: 600; font-family: var(--font-body); border: none; cursor: pointer; transition: var(--transition); }
+    .btn-white:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.2); transform: translateY(-1px); }
+
+    .footer { background: var(--dark); padding: 4rem 2rem 2rem; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; color: var(--white); margin-bottom: 1rem; }
+    .footer-brand span { color: var(--teal-light); }
+    .footer-desc { font-size: 0.875rem; color: rgba(255,255,255,0.5); line-height: 1.7; max-width: 280px; }
+    .footer-col h4 { font-family: var(--font-display); font-weight: 600; font-size: 0.8rem; color: var(--white); margin-bottom: 1.25rem; text-transform: uppercase; letter-spacing: 1.5px; }
+    .footer-col a { display: block; font-size: 0.875rem; color: rgba(255,255,255,0.5); margin-bottom: 0.6rem; transition: var(--transition); }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+    .footer-legal { display: flex; gap: 1.5rem; }
+    .footer-legal a { font-size: 0.8rem; color: rgba(255,255,255,0.3); transition: var(--transition); }
+    .footer-legal a:hover { color: rgba(255,255,255,0.7); }
+
+    @media (max-width: 968px) {
+      .nav-links { display: none; }
+      .nav-mobile-toggle { display: flex; }
+      .features-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero { padding: 9rem 1.25rem 5rem; }
+      .section { padding: 3.5rem 1.25rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">adron<span>.</span></a>
+      <div class="nav-links">
+        <a href="services.html">Services</a>
+        <a href="realisations.html">Realisations</a>
+        <a href="apropos.html">A propos</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html" class="nav-cta">Nous contacter</a>
+      </div>
+      <button class="nav-mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">Sites web</div>
+      <h1>Un site web qui convertit vos visiteurs en clients</h1>
+      <p>Design sur mesure, performances optimales, SEO integre. Tout est inclus pour que votre site travaille pour vous, pas l'inverse.</p>
+      <div class="hero-actions">
+        <a href="contact.html" class="btn-hero-primary">Demander un devis</a>
+        <a href="#offres" class="btn-ghost">Voir les offres</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-header section-header-center">
+        <div class="section-label">Ce qui est inclus</div>
+        <h2 class="section-title">Chaque site est livre cle en main</h2>
+        <p class="section-subtitle">Pas de mauvaise surprise. Tout ce qu'il faut pour un site professionnel, performant et autonome.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
+          <h3>Design sur mesure</h3>
+          <p>Chaque site est dessine pour votre marque. Pas de template, pas de site generique.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></div>
+          <h3>100% responsive</h3>
+          <p>Parfait sur mobile, tablette et desktop. Teste sur tous les navigateurs modernes.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <h3>SEO integre</h3>
+          <p>Optimise pour Google des le premier jour. Meta tags, structure, performance, sitemap.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6" y2="6"/><line x1="6" y1="18" x2="6" y2="18"/></svg></div>
+          <h3>Hebergement suisse</h3>
+          <p>Vos donnees restent en Suisse. Serveurs rapides, certificat SSL inclus.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <h3>Performance &lt; 2s</h3>
+          <p>Chargement rapide garanti. Optimisation des images, du code et de la mise en cache.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
+          <h3>Formation incluse</h3>
+          <p>On vous forme a gerer vos contenus en autonomie. Pas besoin de nous pour chaque modification.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section section-gray" id="offres">
+    <div class="section-inner">
+      <div class="section-header section-header-center">
+        <div class="section-label">Nos offres</div>
+        <h2 class="section-title">Trois formules, un seul standard de qualite</h2>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-name">Essentiel</div>
+          <div class="pricing-price">2'500 <span class="pricing-price-suffix">CHF</span></div>
+          <div class="pricing-desc">Ideal pour les independants et petites structures qui veulent une presence en ligne professionnelle. Jusqu'a 5 pages.</div>
+          <div class="pricing-features">
+            <div class="pricing-feature"><div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Jusqu'a 5 pages</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Design sur mesure</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Responsive mobile</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>SEO de base</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Hebergement suisse 1 an</span></div>
+          </div>
+          <a href="contact.html" class="btn-outline">Choisir Essentiel</a>
+        </div>
+        <div class="pricing-card popular">
+          <div class="pricing-popular-tag">Le plus populaire</div>
+          <div class="pricing-name">Business</div>
+          <div class="pricing-price">5'000 <span class="pricing-price-suffix">CHF</span></div>
+          <div class="pricing-desc">Pour les PME qui veulent generer des leads et automatiser. Jusqu'a 15 pages avec fonctionnalites avancees.</div>
+          <div class="pricing-features">
+            <div class="pricing-feature"><div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Jusqu'a 15 pages</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Tout Essentiel inclus</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>CMS pour gestion autonome</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>SEO avance + analytics</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Formulaires + integrations</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Formation equipe incluse</span></div>
+          </div>
+          <a href="contact.html" class="btn-teal">Choisir Business</a>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-name">Sur mesure</div>
+          <div class="pricing-price">Sur devis</div>
+          <div class="pricing-desc">Pour les projets complexes : e-commerce, application web, portail client, integrations specifiques.</div>
+          <div class="pricing-features">
+            <div class="pricing-feature"><div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Pages illimitees</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Tout Business inclus</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>E-commerce / application</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Integrations API</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Architecture sur mesure</span></div>
+          </div>
+          <a href="contact.html" class="btn-outline">Discuter du projet</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="testimonial-block">
+        <div class="testimonial-stars">
+          <svg class="star-svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="star-svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="star-svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="star-svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="star-svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-text">Notre ancien site ne generait aucun contact. Depuis la refonte par Adron, on recoit 3 a 5 demandes de devis par semaine.</p>
+        <div class="testimonial-author-name">Sophie L.</div>
+        <div class="testimonial-author-role">Cabinet de conseil</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-gray">
+    <div class="section-inner">
+      <div class="section-header section-header-center">
+        <div class="section-label">FAQ</div>
+        <h2 class="section-title">Questions frequentes</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item open">
+          <div class="faq-question">Combien de temps prend la creation d'un site ? <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer">En general, 2 a 4 semaines selon la complexite. Un site Essentiel peut etre livre en 2 semaines, un projet sur mesure en 6 a 8 semaines.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Puis-je modifier le contenu moi-meme ? <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer">Oui. Tous nos sites sont livres avec un CMS simple d'utilisation. Nous formons votre equipe pour que vous soyez autonome sur les modifications courantes.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Le SEO est-il vraiment inclus ? <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer">Oui. Nous optimisons la structure, les meta tags, la vitesse de chargement, le sitemap et les donnees structurees. Vous partez sur de bonnes bases pour le referencement naturel.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Que se passe-t-il apres la livraison ? <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer">On ne disparait pas. Support technique, mises a jour de securite et maintenance sont disponibles. Vous avez un interlocuteur dedie.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">L'hebergement est-il inclus ? <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer">Oui, la premiere annee d'hebergement suisse est incluse dans toutes nos offres. Renouvellement a tarif preferentiel ensuite.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>Pret a lancer votre site ?</h2>
+    <p>Discutons de votre projet. Premier appel gratuit, sans engagement.</p>
+    <a href="contact.html" class="btn-white">Demander un devis</a>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">adron<span>.</span></div>
+          <p class="footer-desc">Solutions IT sur mesure pour les PME genevoises. Sites web, ERP et cloud securise.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="web.html">Sites web</a>
+          <a href="erp.html">ERP sur mesure</a>
+          <a href="cloud.html">Cloud securise</a>
+          <a href="services.html">Tous les services</a>
+        </div>
+        <div class="footer-col">
+          <h4>Entreprise</h4>
+          <a href="apropos.html">A propos</a>
+          <a href="realisations.html">Realisations</a>
+          <a href="faq.html">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:contact@adron.ch">contact@adron.ch</a>
+          <a href="contact.html">Formulaire de contact</a>
+          <a>Geneve, Suisse</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">2026 Adron Technologies. Tous droits reserves.</div>
+        <div class="footer-legal">
+          <a href="#">Mentions legales</a>
+          <a href="#">Politique de confidentialite</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(function(q) {
+      q.addEventListener('click', function() {
+        this.parentElement.classList.toggle('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
