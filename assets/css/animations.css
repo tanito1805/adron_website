@@ -1,0 +1,208 @@
+/* ─── HERO DECORATION ─── */
+.hero-decoration {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 78% 30%, rgba(0,115,115,0.18) 0%, transparent 55%),
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
+  background-size: auto, 30px 30px;
+}
+
+/* ─── HERO ENTRANCE ─── */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-badge,
+  .hero-badge-wrap {
+    animation: heroFade 0.65s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+  .hero h1 {
+    animation: heroFade 0.7s 0.1s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+  .hero p {
+    animation: heroFade 0.7s 0.2s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+  .hero-actions,
+  .hero .btn-hero-primary,
+  .hero .btn-ghost {
+    animation: heroFade 0.7s 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  @keyframes heroFade {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: none; }
+  }
+}
+
+/* ─── SCROLL REVEAL ─── */
+@media (prefers-reduced-motion: no-preference) {
+  [data-anim] {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  [data-anim].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-anim-delay="1"] { transition-delay: 80ms; }
+  [data-anim-delay="2"] { transition-delay: 160ms; }
+  [data-anim-delay="3"] { transition-delay: 240ms; }
+  [data-anim-delay="4"] { transition-delay: 320ms; }
+  [data-anim-delay="5"] { transition-delay: 400ms; }
+  [data-anim-delay="6"] { transition-delay: 480ms; }
+}
+
+/* ─── FAQ SMOOTH ACCORDION ─── */
+.faq-answer {
+  overflow: hidden;
+  max-height: 0;
+  padding-bottom: 0;
+  transition: max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+              padding-bottom 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.28s ease;
+  opacity: 0;
+  display: block !important;
+}
+.faq-item.open .faq-answer {
+  max-height: 300px;
+  padding-bottom: 1.25rem;
+  opacity: 1;
+}
+
+/* ─── CARD UPGRADE (shared override) ─── */
+.card,
+.service-card,
+.feature-card,
+.module-card,
+.accom-card,
+.comp-card,
+.pricing-card,
+.stat-card,
+.team-card,
+.value-card,
+.info-card,
+.testimonial-card,
+.testimonial-block,
+.case-quote,
+.case-metric,
+.form-card,
+.pain-before {
+  box-shadow: var(--card-shadow) !important;
+  border: none !important;
+}
+.card:hover,
+.service-card:hover,
+.feature-card:hover,
+.module-card:hover,
+.accom-card:hover,
+.comp-card:hover,
+.stat-card:hover,
+.team-card:hover,
+.value-card:hover,
+.info-card:hover,
+.testimonial-card:hover,
+.testimonial-block:hover,
+.case-quote:hover,
+.case-metric:hover {
+  box-shadow: var(--card-shadow-hover) !important;
+  transform: translateY(-2px);
+}
+/* pricing popular stays solid teal border */
+.pricing-card.popular {
+  box-shadow: 0 0 0 2px var(--teal), 0 8px 32px rgba(0,115,115,0.1) !important;
+}
+
+/* ─── TRUST LOGOS ─── */
+.trust-logos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+.trust-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1rem 0.5rem 0.6rem;
+  border-radius: 10px;
+  background: var(--white);
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.trust-logo:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-1px);
+}
+.trust-logo-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.65rem;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  letter-spacing: -0.3px;
+}
+.tl-teal   { background: var(--teal); }
+.tl-dark   { background: var(--dark); }
+.tl-slate  { background: #3d4d5c; }
+.tl-ocean  { background: #1a5276; }
+.trust-logo > span {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--dark-2);
+  letter-spacing: 0.1px;
+}
+
+/* ─── PROCESS STEP NUMBERING ─── */
+.process-step::before {
+  color: var(--teal) !important;
+  opacity: 0.25;
+}
+
+/* ─── MOBILE NAV DRAWER ─── */
+.nav-mobile-menu {
+  display: none;
+  position: fixed;
+  top: 80px;
+  left: 0; right: 0;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  padding: 1.25rem 2rem 2rem;
+  z-index: 999;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  flex-direction: column;
+  gap: 0;
+}
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a {
+  display: block;
+  padding: 0.8rem 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--dark-2);
+  border-bottom: 1px solid var(--border);
+  transition: color 0.2s;
+}
+.nav-mobile-menu a:last-child { border-bottom: none; }
+.nav-mobile-menu a:hover { color: var(--teal); }
+.nav-mobile-menu .nav-cta {
+  margin-top: 1rem;
+  background: var(--teal) !important;
+  color: var(--white) !important;
+  text-align: center;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  border-bottom: none !important;
+  font-weight: 600 !important;
+}
